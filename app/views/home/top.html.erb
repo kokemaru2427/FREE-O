@@ -1,0 +1,22 @@
+<div class="top-title-box row border border-bottom">
+  <div class="container my-auto">
+    <h2 class="top-title text-center">F R E E - O</h2>
+  </div>
+</div>
+
+<% #if user_signed_in? %>
+  <div class="container my-auto">
+    <h5 class="wellcome-coment text-center mt-5"><b>よ う こ そ ！ ！ F R E E - O へ！</b></h5>
+  <div class="d-grid gap-2 col-6 mx-auto  mt-4">
+    <button class="btn1 btn text-light mt-5" type="button"><%= link_to 'イベントに参加', "#" , method: :get, class: "text-light text-decoration-none" %></button>
+    <button class="btn1 btn text-light mt-2" type="button"><%= link_to 'イベントを主催', "#" , method: :get , class: "text-light text-decoration-none" %></button>
+  </div>
+<% #else %>
+  <div class="d-grid gap-2 col-6 mx-auto  mt-4">
+    <button class="btn1 btn text-light mt-5" type="button"><%= link_to '新規登録', "#" , method: :get, class: "text-light text-decoration-none" %></button>
+    <button class="btn1 btn text-light mt-2" type="button"><%= link_to 'ログイン', "#" , method: :get , class: "text-light text-decoration-none" %></button>
+  </div>
+<% #end %>
+
+<div class="main-image mt-5">
+<div>
