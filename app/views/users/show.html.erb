@@ -1,0 +1,31 @@
+<div class="top-title-box row border border-bottom">
+  <div class="container my-auto">
+    <h4 class="top-title text-center font-italic"><b><em>Cook詳細ページ</em></b></h4>
+  </div>
+</div>
+
+<div class="container">
+  <div class="myprofile row border w-50 mx-auto p-2 mt-2">
+    <ul class="d-flex list-unstyled">
+      <li class="text-start"><%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", class: "card-img-top img-thumbnail w-50"%>
+        <h3 class="text-start mt-1"><%= @user.nickname %></h3>
+        <% if @user.id == current_user.id %>
+          <p class="ms-5"><%= @user.email %></p>
+        <% end %>
+        </li>
+        <li>
+        <% if @user.profile.blank? %>
+          <div class="profile-box border p-2 h-50 mt-1">プロフィールがありません。</div>
+        <% else %>
+          <div class="profile-box border p-2 h-50 mt-1"><%= @user.profile %></div>
+        <% end %>
+        <% if @user.id == current_user.id %>
+          <div class="mt-3"><%= link_to '編集', edit_user_path(@user), class: "btn btn-primary order-2" %></div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,42 @@
+<div class="top-title-box row border border-bottom">
+  <div class="container my-auto">
+    <h4 class="top-title text-center font-italic"><b><em>ユーザー編集ページ</em></b></h4>
+  </div>
+</div>
+<% if @user.errors.any? %>
+  <div>
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="container">
+<%= form_for @user do |f| %>
+  
+  <div class="field mt-3">
+    <b><%= f.label :username, "ニックネーム" , class: "my-2" %></b><br />
+    <i class="fas fa-user"></i>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "nickname", class: "form-control" %>
+  </div>
+
+  <div class="field mt-2">
+    <b><%= f.label :email, "Eメールアドレス" , class: "my-2"%></b><br />
+    <i class="far fa-envelope"></i>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "form-control"%>
+  </div>
+
+  <b><%= f.label :profile, "プロフィール" , class: "my-2"%></b><br />
+  <%= f.text_area :profile, placeholder: "プロフィール", row: "10", class: "form-control" %>
+
+  <b><%= f.label :profile_image, "プロフィール画像" , class: "my-2"%></b><br />
+  <%= f.attachment_field :profile_image %>
+
+<div class="actions mt-4">
+  <%= f.submit "更新" , class: "btn btn-primary col-4 offset-4"%>
+</div>
+<% end %>
+</div>
