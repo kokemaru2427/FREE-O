@@ -32,12 +32,12 @@
         <% if user_signed_in? %>
           <%= link_to 'イベント一覧', "#", method: :get , class: "nav-link ms-1 text-dark" %>
           <%= link_to 'イベント投稿', "#", method: :get, class: "nav-link ms-1 text-dark" %>
-          <%= link_to 'ユーザー一覧', "#", method: :get, class: "nav-link ms-1 text-dark" %>
-          <%= link_to 'マイページ', "#", method: :get, class: "nav-link ms-1 text-dark" %>
+          <%= link_to 'ユーザー一覧', users_path, method: :get, class: "nav-link ms-1 text-dark" %>
+          <%= link_to 'マイページ', user_path(current_user), method: :get, class: "nav-link ms-1 text-dark" %>
           <%= link_to 'ログアウト', destroy_user_session_path , method: :delete , class: "text-end nav-link ms-1 text-dark"%>
         <% else %>
           <%= link_to 'イベント一覧', "#", class: "nav-link ms-1 text-dark" %>
-          <%= link_to 'ユーザー一覧', "#" , method: :get, class: "nav-link ms-1 text-dark" %>
+          <%= link_to 'ユーザー一覧', users_path , method: :get, class: "nav-link ms-1 text-dark" %>
           <%= link_to '新規登録', new_user_registration_path , method: :get, class: "nav-link ms-1 text-dark" %>
           <%= link_to 'ログイン', new_user_session_path, method: :get, class: "nav-link ms-1 text-dark" %>
         <% end %>
