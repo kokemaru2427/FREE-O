@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
          attachment :profile_image
          has_many :events
+         has_many :comments
 end
