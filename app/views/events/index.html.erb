@@ -1,0 +1,56 @@
+<div class="top-title-box row border border-bottom">
+  <div class="container my-auto">
+    <h4 class="top-title text-center font-italic"><b><em>レシピ一覧ページ</em></b></h4>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+
+      <% @events.each do |event| %>
+  <div class="card mt-5 border mx-auto" style="width: 20rem;">
+    <div class="article-text">
+    <%= link_to event_path(event) do %>
+        <%= attachment_image_tag event, :event_image, class: "card-img-top" , fallback: "no-image.jpg" %>
+    </div>
+      <div class="card-body">
+        <div class="article-title">
+          タイトル：<%= event.title %>
+        </div>
+        <div class="article-text">
+          詳細：<%= event.details %>
+        </div>
+        <div class="article-genre">
+          ジャンル：<%= event.category.name %>
+        </div>
+        <div class="article-title">
+          開催エリア：<%= event.event_prefecture.name %>
+        </div>
+        <div class="article-text">
+          参加可能人数：<%= event.people_number.name %>
+        </div>
+        <div class="article-title">
+          参加費用：<%= event.cost %>
+        </div>
+        <div class="article-text">
+          イベント日時：<%= event.event_date %>
+        </div>
+        <div class="article-text">
+          開催住所：<%= event.event_address %>
+        </div>
+        <div class="article-text">
+          開始時間：<%= event.start_time %>
+        </div>
+        <div class="article-text">
+          終了時間：<%= event.end_time %>
+        </div>
+        <div class="article-text">
+          主催者：<%= event.user.nickname %>
+        </div>
+        <div><time class="mh-100"><%= event.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新</div>
+    </div>
+    <% end %>
+  </div>
+    <% end %>
+</div>
+</div>
