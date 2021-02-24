@@ -21,7 +21,7 @@
   </div>
 
     <div class="field mt-3">
-    <b><%= f.label :school_year_id, '学年', class: "my-2" %></b><br />
+    <b><%= f.label :school_year, '学年', class: "my-2" %></b><br />
     <i class="fas fa-graduation-cap"></i>
     <%= f.select :school_year, {'大学1回生': '大学1回生', '大学2回生': '大学2回生', '大学3回生': '大学3回生', '大学4回生': '大学4回生', '大学院生': '大学院生'}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
   </div>

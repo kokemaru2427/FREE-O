@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          attachment :profile_image
-         has_many :events
-         has_many :comments
+         has_many :events, dependent: :destroy
+         has_many :entried_events, class_name: 'Event', through: :entries
+         has_many :comments, dependent: :destroy
+         has_many :entries, dependent: :destroy
+
 end

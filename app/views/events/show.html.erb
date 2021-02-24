@@ -69,3 +69,25 @@
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
   </div>
+
+  <% unless @event.entries.map(&:user_id).include? current_user.id or @event.user_id == current_user.id %>
+    <%= link_to 'エントリーへ', new_event_entry_path(@event.id), method: :get , class: "nav-link ms-1 text-dark" %>
+  <% end %>
+  <p>エントリー者数：<%= @event.entries.count %></p>
+  <% if @event.user_id == current_user.id %>
+    <p>エントリー者一覧</p>
+  <% @entrys.each do |entry| %>
+    <% if entry.event_id == @event.id %>
+      <div>
+        <%= link_to user_path(entry.user_id), method: :get do %>
+          <%= entry.j_family_name %>
+          <%= entry.j_last_name %>
+        <% end %>
+          性別：<%= entry.sex %>
+          学年：<%= entry.entry_school_year %><br>
+          <%= entry.entry_comment %>
+      </div>
+    <% end %>
+  <% end %>
+  <% end %>
+  
