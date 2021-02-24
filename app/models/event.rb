@@ -7,7 +7,8 @@ class Event < ApplicationRecord
   attachment :event_image
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   with_options presence: true do
     validates :title  

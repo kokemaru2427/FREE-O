@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :users
   resources :events do
     resources :comments, only: :create
+    resources :entries, only: [:index, :new, :create]
   end
 end

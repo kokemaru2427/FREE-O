@@ -11,13 +11,14 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.valid?
       @event.save
-      redirect_to root_path
+      redirect_to action: :index
     else
       render :new
     end
   end
 
   def show
+    @entrys = Entry.all
     @event = Event.find(params[:id])
     @comment = Comment.new
     @comments = @event.comments.includes(:user)
@@ -34,6 +35,12 @@ class EventsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy
+    redirect_to user_path(current_user.id)
   end
 
   private

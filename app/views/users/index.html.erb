@@ -14,9 +14,14 @@
           <% end %>
             <div class="card-body">
               <p class="card-text h2"><%= link_to user.nickname, user_path(user) , class: "text-decoration-none" %></p>
-              <p>投稿数:</p>
+              <p>投稿数:<%= user.events.count %></p>
             </div>
         </div>
       <% end %>
     </div>
   </div>
+
+
+
+
+
