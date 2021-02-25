@@ -8,6 +8,26 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @events = Event.all
     @entries = Entry.all
+    @currentUserInvite = Invite.where(user_id: current_user.id)
+    @userInvite = Invite.where(user_id: @user.id)
+    if @user.id == current_user.id
+      @msg =""
+    else
+      @currentUserInvite.each do |cu|
+        @userInvite.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+
+      if @isRoom != true
+        @room = Room.new
+        @invite = Invite.new
+      end
+
+    end
   end
 
   def edit

@@ -9,5 +9,7 @@ class User < ApplicationRecord
          has_many :entried_events, class_name: 'Event', through: :entries
          has_many :comments, dependent: :destroy
          has_many :entries, dependent: :destroy
+         has_many :messages, dependent: :destroy
+         has_many :room_users, dependent: :destroy
 
 end
