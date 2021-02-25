@@ -41,6 +41,16 @@
         <div class="article-text">
           主催者：<%= @event.user.nickname %>
         </div>
+    <% if current_user.already_favorited?(@event) %>
+      <%= link_to event_favorites_path(@event), method: :delete do %>
+        <i class="fas fa-heart"></i>
+      <% end %>
+    <% else %>
+      <%= link_to event_favorites_path(@event), method: :post do %>
+        <i class="far fa-heart"></i>
+      <% end %>
+    <% end %>
+    <%= @event.favorites.count %>
         <% if @event.user.id == current_user.id %>
           <%= link_to "編集", edit_event_path(@event), class: "btn btn-primary col-4 offset-4 mt-3" %>
         <% end %>
