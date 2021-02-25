@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   with_options presence: true do
     validates :title  

@@ -11,5 +11,10 @@ class User < ApplicationRecord
          has_many :entries, dependent: :destroy
          has_many :messages, dependent: :destroy
          has_many :room_users, dependent: :destroy
+         has_many :favorites, dependent: :destroy
+
+          def already_favorited?(event)
+            self.favorites.exists?(event_id: event.id)
+          end
 
 end
