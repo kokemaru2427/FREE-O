@@ -9,6 +9,24 @@
     <ul class="d-flex list-unstyled">
       <li class="text-start"><%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", class: "card-img-top img-thumbnail w-50"%>
         <h3 class="text-start mt-1"><%= @user.nickname %></h3>
+        <div class="user-in">
+          <% if @user.id == current_user.id %>
+            <%= @msg %>
+          <% else %>
+
+            <% if @isRoom == true %>
+              <p><%= link_to 'DMへ', room_path(@roomId) %></p>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @invite do |e|%>
+                  <% e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+                <%= f.submit "DMを開始する"%>
+              <% end %>
+            <% end %>
+            
+          <% end %>
+</div> 
         <% if @user.id == current_user.id %>
           <p class="ms-5"><%= @user.email %></p>
         <% end %>
@@ -92,3 +110,7 @@
     <% end %>
   </div>
 </div>
+
+
+
+
