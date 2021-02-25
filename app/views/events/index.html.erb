@@ -4,6 +4,8 @@
   </div>
 </div>
 
+
+
 <div class="container">
   <div class="row">
 
@@ -50,7 +52,8 @@
         <div><time class="mh-100"><%= event.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新</div>
     </div>
     <% end %>
-        <% if current_user.already_favorited?(event) %>
+    <p>
+    <% if current_user.already_favorited?(event) %>
       <%= link_to event_favorites_path(event), method: :delete do %>
         <i class="fas fa-heart"></i>
       <% end %>
@@ -59,7 +62,7 @@
         <i class="far fa-heart"></i>
       <% end %>
     <% end %>
-    <%= event.favorites.count %>
+    <%= event.favorites.count %></p>
   </div>
     <% end %>
 </div>
