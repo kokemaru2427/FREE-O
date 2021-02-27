@@ -1,0 +1,121 @@
+<div class="top-title-box row border border-bottom">
+  <div class="container my-auto">
+    <h4 class="top-title text-center font-italic"><b><em>イベント一覧ページ</em></b></h4>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <%= search_form_for @p, url: search_events_path do |f| %>
+      <%= f.label :title_cont, 'キーワード検索:' %>
+      <%= f.search_field :title_cont %>
+    <br>
+      <%= f.label :event_date_gteq, '開催日で絞り込む：' %>
+      <%= f.date_field :event_date_gteq %>
+      ~
+      <%= f.date_field :event_date_lteq_end_of_day %>
+    <br>
+      <%= f.label :event_date_eq, '開催日選択：' %>
+      <%= f.date_field :event_date_eq %>
+    <br>
+      <%= f.label :category_id_eq, 'カテゴリー:' %>
+      <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>
+    <br>
+      <%= f.label :event_prefecture_id_eq, '開催県：' %>
+      <%= f.collection_select :event_prefecture_id_eq, EventPrefecture.all, :id, :name, include_blank: '指定なし'%>
+    <br>
+      <%= f.label :cost, '価格：' %>
+      <%= f.radio_button :cost_lteq, '' %>
+      指定なし
+      <%= f.radio_button :cost_lteq, '0' %>
+      無料
+      <%= f.radio_button :cost_lteq, '500' %>
+      500円以内
+      <%= f.radio_button :cost_lteq, '1000' %>
+      1000円以内
+      <%= f.radio_button :cost_lteq, '1500' %>
+      1500円以内
+      <%= f.radio_button :cost_lteq, '2000' %>
+      2000円以内
+      <%= f.radio_button :cost_lteq, '3000' %>
+      3000円以内
+      <%= f.radio_button :cost_lteq, '4000' %>
+      4000円以内
+      <%= f.radio_button :cost_lteq, '5000' %>
+      5000円以内
+    <br>
+    <%= link_to '全てを表示', events_path %>
+    <br>
+      <%= f.submit '検索' %>
+    <br>
+<% end %>
+
+<% if @results.length !=0 %>
+      <% @results.each do |result| %>
+        <div class="card mt-5 border mx-auto" style="width: 20rem;">
+          <div class="article-text">
+            <%= link_to event_path(result) do %>
+              <%= attachment_image_tag result, :event_image, class: "card-img-top" , fallback: "no-image.jpg" %>
+          </div>
+          <div class="card-body">
+            <div class="article-title">
+              タイトル：<%= result.title %>
+            </div>
+            <div class="article-text">
+              詳細：<%= result.details %>
+            </div>
+            <div class="article-genre">
+              ジャンル：<%= result.category.name %>
+            </div>
+            <div class="article-title">
+              開催エリア：<%= result.event_prefecture.name %>
+            </div>
+            <div class="article-text">
+              参加可能人数：<%= result.people_number.name %>
+            </div>
+            <div class="article-title">
+              参加費用：<%= result.cost %>
+            </div>
+            <div class="article-text">
+              イベント日時：<%= result.event_date %>
+            </div>
+            <div class="article-text">
+              開催住所：<%= result.event_address %>
+            </div>
+            <div class="article-text">
+              開始時間：<%= result.start_time %>
+            </div>
+            <div class="article-text">
+              終了時間：<%= result.end_time %>
+            </div>
+            <div class="article-text">
+              主催者：<%= result.user.nickname %>
+            </div>
+            <div>
+              <time class="mh-100">
+                <%= result.updated_at.strftime("%Y-%m-%d %H:%M") %>
+              </time>更新
+            </div>
+          </div>
+            <% end %>
+          <p>
+          <% if current_user.already_favorited?(result) %>
+            <%= link_to event_favorites_path(result), method: :delete do %>
+              <i class="fas fa-heart"></i>
+            <% end %>
+          <% else %>
+            <%= link_to event_favorites_path(result), method: :post do %>
+              <i class="far fa-heart"></i>
+            <% end %>
+          <% end %>
+          <%= result.favorites.count %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  該当する商品はありません
+<% end %>
+<br>
+<%= link_to 'トップページへ戻る', root_path %>
