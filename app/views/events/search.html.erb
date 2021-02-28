@@ -47,15 +47,26 @@
     <%= link_to '全てを表示', events_path %>
     <br>
       <%= f.submit '検索' %>
-    <br>
 <% end %>
+
+  <thead>
+    <tr>
+      <th><%= sort_link(@p, :category_id, "カテゴリー") %></th>
+      <th><%= sort_link(@p, :event_prefecture_id, "開催県") %></th>
+      <th><%= sort_link(@p, :cost, "費用") %></th>
+      <th><%= sort_link(@p, :event_date, "開催日") %></th>
+      <th><%= sort_link(@p, :people_number_id, "参加人数") %></th>
+      <th><%= sort_link(@p, :user_id, "主催者別") %></th>
+      <th><%= sort_link(@p, :created_at, "投稿順") %></th>
+    </tr>
+  </thead>
 
 <% if @results.length !=0 %>
       <% @results.each do |result| %>
         <div class="card mt-5 border mx-auto" style="width: 20rem;">
           <div class="article-text">
             <%= link_to event_path(result) do %>
-              <%= attachment_image_tag result, :event_image, class: "card-img-top" , fallback: "no-image.jpg" %>
+              <%= attachment_image_tag result, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
           </div>
           <div class="card-body">
             <div class="article-title">

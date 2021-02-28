@@ -7,7 +7,7 @@
 <div class="container">
   <div class="myprofile row border w-50 mx-auto p-2 mt-2">
     <ul class="d-flex list-unstyled">
-      <li class="text-start"><%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", class: "card-img-top img-thumbnail w-50"%>
+      <li class="text-start"><%= attachment_image_tag @user, :profile_image, fallback: "no-user-image.jpg", class: "card-img-top img-thumbnail w-50"%>
         <h3 class="text-start mt-1"><%= @user.nickname %></h3>
         <div class="user-in">
           <% if @user.id == current_user.id %>
@@ -51,7 +51,7 @@
   <div class="row">
     <% @events.each do |event| %>
       <div class="card mt-5 border mx-auto" style="width: 20rem;">
-          <%= attachment_image_tag event, :event_image, class: "card-img-top" %>
+          <%= attachment_image_tag event, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
             <div class="card-body border-bottom">
               <h5 class="card-title"><%= event.title %></h5>
             </div>
@@ -83,7 +83,7 @@
     <% @events.each do |event| %>
     <% if event.user_id == @user.id %>
       <div class="card mt-5 border mx-auto" style="width: 20rem;">
-          <%= attachment_image_tag event, :event_image, class: "card-img-top" %>
+          <%= attachment_image_tag event, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
             <div class="card-body border-bottom">
               <h5 class="card-title"><%= event.title %></h5>
               <p>エントリー者数：<%= event.entries.count %></p>
