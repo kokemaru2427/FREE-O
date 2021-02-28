@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @events = @p.result(distinct: true).order("created_at DESC")
   end
 
   def new
@@ -47,7 +48,7 @@ class EventsController < ApplicationController
   end
 
   def search
-    @results = @p.result
+    @results = @p.result.order("created_at DESC")
   end
 
   private
