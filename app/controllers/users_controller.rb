@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @events = Event.all
+    @entry_events = @user.entried_events
     @entries = Entry.all
     @currentUserInvite = Invite.where(user_id: current_user.id)
     @userInvite = Invite.where(user_id: @user.id)

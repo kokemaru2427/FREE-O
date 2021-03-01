@@ -6,9 +6,9 @@ class User < ApplicationRecord
 
          attachment :profile_image
          has_many :events, dependent: :destroy
-         has_many :entried_events, class_name: 'Event', through: :entries
-         has_many :comments, dependent: :destroy
          has_many :entries, dependent: :destroy
+         has_many :entried_events,  source: :event, through: :entries
+         has_many :comments, dependent: :destroy
          has_many :messages, dependent: :destroy
          has_many :room_users, dependent: :destroy
          has_many :favorites, dependent: :destroy
