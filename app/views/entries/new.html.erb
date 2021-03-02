@@ -6,25 +6,24 @@
 
 
 <div class="container">
-<% if user_signed_in? %>
 <%= form_with(model: [@event, @entry], local: true) do |f| %>
 <%= render 'shared/error_messages', model: f.object %>
 
   <div class="field mt-3">
     <b><%= f.label :family_name, "お名前（名字）" , class: "my-2" %></b><br/>
-    <%= f.text_field :family_name, class:"form-control", placeholder:"お名前（名字）" %>
+    <%= f.text_field :family_name, class:"form-control", placeholder:"例）田中" %>
   </div>
   <div class="field mt-3">
     <b><%= f.label :last_name, "お名前（名前）" , class: "my-2" %></b><br/>
-    <%= f.text_field :last_name, class:"form-control", placeholder:"お名前（名前）" %>
+    <%= f.text_field :last_name, class:"form-control", placeholder:"例）太郎" %>
   </div>
   <div class="field mt-3">
     <b><%= f.label :j_family_name, "フリガナ（名字）" , class: "my-2" %></b><br/>
-    <%= f.text_field :j_family_name, class: "form-control" %>
+    <%= f.text_field :j_family_name, class: "form-control", placeholder:"例）タナカ" %>
   </div>
   <div class="field mt-3">
     <b><%= f.label :j_last_name, "フリガナ（名前）" , class: "my-2" %></b><br/>
-    <%= f.text_field :j_last_name, class: "form-control" %>
+    <%= f.text_field :j_last_name, class: "form-control", placeholder:"例）タロウ" %>
   </div>
   <div class="field mt-3">
     <b><%= f.label :entry_school_year, '学年', class: "my-2" %></b><br />
@@ -32,16 +31,13 @@
     <%= f.select :entry_school_year, {'大学1回生': '大学1回生', '大学2回生': '大学2回生', '大学3回生': '大学3回生', '大学4回生': '大学4回生', '大学院生': '大学院生'}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
   </div>
   <div class="field mt-3">
-    <b><%= f.label :sex, '学年', class: "my-2" %></b><br />
+    <b><%= f.label :sex, '性別', class: "my-2" %></b><br />
     <%= f.select :sex, {'男': '男', '女': '女'}, { include_blank: '性別を選択してください'}, { class: 'form-control' , required: true } %>
   </div>
   <div class="field mt-3">
-    <b><%= f.label :title, "主催者へコメント" , class: "form-control" %></b><br/>
-    <%= f.text_area :entry_comment %>
+    <b><%= f.label :entry_comment, "主催者へコメント" %></b><br/>
+    <%= f.text_area :entry_comment , class: "form-control" %>
   </div>
-    <%= f.submit "エントリー" ,class: "btn btn-primary col-4 offset-4 mt-3" %>
-<% end %>
-  <% else %>
-    <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <%= f.submit "エントリー" ,class: "btn btn-primary col-4 offset-4 my-3" %>
   <% end %>
 </div>

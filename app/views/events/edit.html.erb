@@ -5,21 +5,56 @@
 </div>
 
 
-
+<div class="container">
 <%= form_with(model: @event, local: true) do |f| %>
 <%= render 'shared/error_messages', model: f.object %>
-  <div class="article-box">
-    記事を投稿する
-    <%= f.text_field :title, class:"title", placeholder:"タイトル" %>
-    <%= f.text_area :details, class:"text", placeholder:"詳細" %>
-    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"category-select"}) %>
-    <%= f.collection_select(:event_prefecture_id, EventPrefecture.all, :id, :name, {}, {class:"category-select"}) %>
-    <%= f.collection_select(:people_number_id, PeopleNumber.all, :id, :name, {}, {class:"category-select"}) %>
-    <%= f.text_field :cost %>
-    <%= f.date_field :event_date %>
-    <%= f.time_field :start_time %>
-    <%= f.time_field :end_time %>
-    <%= f.attachment_field :event_image %>
-    <%= f.submit "投稿する" ,class:"btn" %>
+
+  <div class="field mt-3">
+    <b><%= f.label :title, "タイトル" , class: "my-2" %></b><br/>
+    <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
   </div>
+  <div class="field mt-3">
+    <b><%= f.label :title, "詳細情報" , class: "my-2" %></b><br/>
+    <%= f.text_area :details, class:"form-control", placeholder:"詳細" %>
+  </div>
+  <div class="field mt-3">
+    <b><%= f.label :title, "ジャンル" , class: "my-2" %></b><br/>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"category-select form-control"}) %>
+  </div>  
+  <div class="field mt-3">
+    <b><%= f.label :title, "開催地域" , class: "my-2" %></b><br/>
+    <%= f.collection_select(:event_prefecture_id, EventPrefecture.all, :id, :name, {}, {class:"category-select form-control"}) %>
+  </div>
+
+    <div class="field mt-3">
+    <b><%= f.label :event_address, "開催住所" , class: "my-2" %></b><br/>
+    <%= f.text_field :event_address, class:"form-control", placeholder:"開催住所" %>
+  </div>
+  
+  <div class="field mt-3">
+    <b><%= f.label :title, "参加可能人数" , class: "my-2" %></b><br/>
+    <%= f.collection_select(:people_number_id, PeopleNumber.all, :id, :name, {}, {class:"category-select form-control"}) %>
+  </div>
+  <div class="field mt-3">
+    <b><%= f.label :title, "参加費用" , class: "my-2" %></b><br/>
+    <%= f.text_field :cost, class: "form-control", placeholder: "※無料の場合は０と記入してください。" %>円
+  </div>  
+  <div class="field mt-3">
+    <b><%= f.label :title, "開催日" , class: "my-2" %></b><br/>
+    <%= f.date_field :event_date, class: "form-control" %>
+  </div>
+  <div class="field mt-3">
+    <b><%= f.label :title, "開始時間" , class: "my-2" %></b><br/>
+    <%= f.time_field :start_time, class: "form-control" %>
+  </div>
+  <div class="field mt-3">
+    <b><%= f.label :title, "終了時間"  %></b><br/>
+    <%= f.time_field :end_time, class: "form-control" %>
+  </div>
+  <div class="field mt-3">
+    <b><%= f.label :event_image, "イメージ画像", class: "me-5"  %></b>
+    <%= f.attachment_field :event_image %>
+  </div>
+    <%= f.submit "更新する" ,class: "btn btn-primary col-4 offset-4 my-3" %>
 <% end %>
+</div>

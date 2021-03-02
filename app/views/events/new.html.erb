@@ -36,7 +36,7 @@
   </div>
   <div class="field mt-3">
     <b><%= f.label :title, "参加費用" , class: "my-2" %></b><br/>
-    <%= f.text_field :cost, class: "form-control" %>円
+    <%= f.text_field :cost, class: "form-control", placeholder: "※無料の場合は０と記入してください。" %>円
   </div>  
   <div class="field mt-3">
     <b><%= f.label :title, "開催日" , class: "my-2" %></b><br/>
@@ -47,11 +47,13 @@
     <%= f.time_field :start_time, class: "form-control" %>
   </div>
   <div class="field mt-3">
-    <b><%= f.label :title, "終了時間" , class: "form-control" %></b><br/>
-    <%= f.time_field :end_time %>
+    <b><%= f.label :title, "終了時間"  %></b><br/>
+    <%= f.time_field :end_time, class: "form-control" %>
   </div>
-
+  <div class="field mt-3">
+    <b><%= f.label :event_image, "イメージ画像", class: "me-5"  %></b>
     <%= f.attachment_field :event_image %>
-    <%= f.submit "投稿する" ,class: "btn btn-primary col-4 offset-4 mt-3" %>
+  </div>
+    <%= f.submit "投稿する" ,class: "btn btn-primary col-4 offset-4 my-3" %>
 <% end %>
 </div>
