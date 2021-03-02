@@ -4,127 +4,139 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <%= search_form_for @p, url: search_events_path do |f| %>
-      <%= f.label :title_cont, 'キーワード検索:' %>
-      <%= f.search_field :title_cont %>
-    <br>
-      <%= f.label :event_date_gteq, '開催日で絞り込む：' %>
-      <%= f.date_field :event_date_gteq %>
-      ~
-      <%= f.date_field :event_date_lteq_end_of_day %>
-    <br>
-      <%= f.label :event_date_eq, '開催日選択：' %>
-      <%= f.date_field :event_date_eq %>
-    <br>
-      <%= f.label :category_id_eq, 'カテゴリー:' %>
-      <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>
-    <br>
-      <%= f.label :event_prefecture_id_eq, '開催県：' %>
-      <%= f.collection_select :event_prefecture_id_eq, EventPrefecture.all, :id, :name, include_blank: '指定なし'%>
-    <br>
-      <%= f.label :cost, '価格：' %>
-      <%= f.radio_button :cost_lteq, '' %>
-      指定なし
-      <%= f.radio_button :cost_lteq, '0' %>
-      無料
-      <%= f.radio_button :cost_lteq, '500' %>
-      500円以内
-      <%= f.radio_button :cost_lteq, '1000' %>
-      1000円以内
-      <%= f.radio_button :cost_lteq, '1500' %>
-      1500円以内
-      <%= f.radio_button :cost_lteq, '2000' %>
-      2000円以内
-      <%= f.radio_button :cost_lteq, '3000' %>
-      3000円以内
-      <%= f.radio_button :cost_lteq, '4000' %>
-      4000円以内
-      <%= f.radio_button :cost_lteq, '5000' %>
-      5000円以内
-    <br>
-    <%= link_to '全てを表示', events_path %>
-    <br>
-      <%= f.submit '検索' %>
-<% end %>
-
-<div>
-<h5 class="mt-3">並び替え</h5>
-
-  <thead>
-    <tr>
-      <th><%= sort_link(@p, :category_id, "カテゴリー") %></th>
-      <th><%= sort_link(@p, :event_prefecture_id, "開催県") %></th>
-      <th><%= sort_link(@p, :cost, "費用") %></th>
-      <th><%= sort_link(@p, :event_date, "開催日") %></th>
-      <th><%= sort_link(@p, :people_number_id, "参加人数") %></th>
-      <th><%= sort_link(@p, :user_id, "主催者別") %></th>
-      <th><%= sort_link(@p, :created_at, "投稿順") %></th>
-    </tr>
-  </thead>
-</div>
-<%= link_to '元に戻す', events_path %>
-
-    <% @events.each do |event| %>
-      <div class="card mt-5 border mx-auto" style="width: 20rem;">
-        <div class="article-text">
-          <%= link_to event_path(event) do %>
-            <%= attachment_image_tag event, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
-        </div>
-        <div class="card-body">
-          <div class="article-title">
-            タイトル：<%= event.title %>
-          </div>
-          <div class="article-text">
-            詳細：<%= event.details %>
-          </div>
-          <div class="article-genre">
-            ジャンル：<%= event.category.name %>
-          </div>
-          <div class="article-title">
-            開催エリア：<%= event.event_prefecture.name %>
-          </div>
-          <div class="article-text">
-            参加可能人数：<%= event.people_number.name %>
-          </div>
-          <div class="article-title">
-            参加費用：<%= event.cost %>
-          </div>
-          <div class="article-text">
-            イベント日時：<%= event.event_date %>
-          </div>
-          <div class="article-text">
-            開催住所：<%= event.event_address %>
-          </div>
-          <div class="article-text">
-            開始時間：<%= event.start_time %>
-          </div>
-          <div class="article-text">
-            終了時間：<%= event.end_time %>
-          </div>
-          <div class="article-text">
-            主催者：<%= event.user.nickname %>
-          </div>
-          <div>  
-            <time class="mh-100">
-              <%= event.updated_at.strftime("%Y-%m-%d %H:%M") %>
-            </time>更新
-          </div>
-        </div>
-          <% end %>
-        <p>
-        <% if current_user.already_favorited?(event) %>
-          <%= link_to event_favorites_path(event), method: :delete do %>
-            <i class="fas fa-heart"></i>
-          <% end %>
-        <% else %>
-          <%= link_to event_favorites_path(event), method: :post do %>
-            <i class="far fa-heart"></i>
-          <% end %>
+<div class="events-bg">
+  <div class="container bg-light border pb-3">
+    <div class="row">
+      <div class="border-top border-end border-1">
+        <h5 class="mt-2">検索▼</h5>
+        <%= search_form_for @p, url: search_events_path do |f| %>
+          <%= f.label :title_cont, 'キーワード検索:', class: "mt-2" %>
+          <%= f.search_field :title_cont , class: "w-25 border-dark form-control" %>
+        <br>
+          <%= f.label :event_date_gteq, '開催日で絞り込む：' %>
+          <%= f.date_field :event_date_gteq %>
+        ~
+          <%= f.date_field :event_date_lteq_end_of_day %>
+        <br>
+          <%= f.label :event_date_eq, '開催日選択：', class: "mt-2" %>
+          <%= f.date_field :event_date_eq, class: "mt-2" %>
+        <br>
+          <%= f.label :category_id_eq, 'カテゴリー:', class: "mt-2" %>
+          <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
+        <br>
+          <%= f.label :event_prefecture_id_eq, '開催県：', class: "mt-2" %>
+          <%= f.collection_select :event_prefecture_id_eq, EventPrefecture.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
+        <br>
+          <%= f.label :cost, '価格：', class: "my-2" %>
+          <%= f.radio_button :cost_lteq, '' %>
+          指定なし
+          <%= f.radio_button :cost_lteq, '0' %>
+          無料
+          <%= f.radio_button :cost_lteq, '500' %>
+          500円以内
+          <%= f.radio_button :cost_lteq, '1000' %>
+          1000円以内
+          <%= f.radio_button :cost_lteq, '1500' %>
+          1500円以内
+          <%= f.radio_button :cost_lteq, '2000' %>
+          2000円以内
+          <%= f.radio_button :cost_lteq, '3000' %>
+          3000円以内
+          <%= f.radio_button :cost_lteq, '4000' %>
+          4000円以内
+          <%= f.radio_button :cost_lteq, '5000' %>
+          5000円以内
+          <%= f.radio_button :cost_gteq, '5000' %>
+          5000円以上
+        <br>
+          <%= link_to '絞り込みをクリア', events_path, class: "text-decoration-none text-dark border border-dark p-1" %>
+        <br>
+          <p class="mt-2"><%= f.submit '検索' %></p>
         <% end %>
-        <%= event.favorites.count %></p>
       </div>
-    <% end %>
+
+      <div class="border-top border-end border-1 p-2">
+      <h5 class="mt-2">並び替え▼</h5>
+      <thead>
+        <tr>
+          <th><span class="mx-1"><%= sort_link(@p, :category_id, "カテゴリー順" ) %></span></th>
+          <th><span class="mx-1"><%= sort_link(@p, :event_prefecture_id, "都道府県順") %></span></th>
+          <th><span class="mx-1"><%= sort_link(@p, :cost, "費用順") %></span></th>
+          <th><span class="mx-1"><%= sort_link(@p, :event_date, "開催日順") %></span></th>
+          <th><span class="mx-1"><%= sort_link(@p, :people_number_id, "参加人数順") %></span></th>
+          <th><span class="mx-1"><%= sort_link(@p, :created_at, "投稿順") %></span></th>
+          <th><span class="mx-1"><%= sort_link(@p, :user_id, "主催者別") %></span></th>
+          <th><span class="mx-1"><%= link_to '元に戻す', events_path, class: "text-decoration-none text-dark border border-dark p-1" %></span></th>
+        </tr>
+      </thead>
+      </div>
+
+
+      <% @events.each do |event| %>
+        <div class="card mt-5 border border-3 mx-auto" style="width: 20rem;">
+          <div class="article-text">
+          <%= link_to event_path(event),class: "text-decoration-none text-dark border-top mt-3" do %>
+            <%= attachment_image_tag event, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
+          </div>
+          <div class="card-body">
+            <div class="article-title">
+              タイトル：<%= event.title %>
+            </div>
+            <div class="article-text">
+              詳細：<%= event.details %>
+            </div>
+            <div class="article-genre">
+              ジャンル：<%= event.category.name %>
+            </div>
+            <div class="article-title">
+              開催エリア：<%= event.event_prefecture.name %>
+            </div>
+            <div class="article-text">
+              参加可能人数：<%= event.people_number.name %>
+            </div>
+            <div class="article-title">
+              参加費用：<%= event.cost %>円
+            </div>
+            <div class="article-text">
+              イベント日時：<%= event.event_date %>
+            </div>
+            <div class="article-text">
+              開催住所：<%= event.event_address %>
+            </div>
+            <div class="article-text">
+              開始時間：<%= event.start_time %>
+            </div>
+            <div class="article-text">
+              終了時間：<%= event.end_time %>
+            </div>
+            <div class="article-text">
+              主催者：<%= event.user.nickname %>
+            </div>
+            <div>  
+              <time class="mh-100">
+                <%= event.updated_at.strftime("%Y-%m-%d %H:%M") %>
+              </time>更新
+            </div>
+          </div>
+          <% end %>
+
+      <% if current_user %>
+        <p>
+          <% if current_user.already_favorited?(event) %>
+            <%= link_to event_favorites_path(event),class: "text-decoration-none text-dark border-top mt-3", method: :delete do %>
+              <i class="fas fa-heart text-danger"></i>いいね！
+            <% end %>
+          <% else %>
+            <%= link_to event_favorites_path(event),class: "text-decoration-none text-dark border-top mt-3", method: :post do %>
+              <i class="far fa-heart text-danger"></i>いいね！
+            <% end %>
+          <% end %>
+
+        <%= event.favorites.count %></p>
+      <% end  %>
+      
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>

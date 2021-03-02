@@ -6,25 +6,27 @@
 
 <div class="container">
   <div class="row">
+  <div class="border border-1">
+  <h5 class="mt-2">検索▼</h5>
     <%= search_form_for @p, url: search_events_path do |f| %>
-      <%= f.label :title_cont, 'キーワード検索:' %>
-      <%= f.search_field :title_cont %>
+      <%= f.label :title_cont, 'キーワード検索:', class: "mt-2" %>
+      <%= f.search_field :title_cont , class: "w-25 border-dark form-control" %>
     <br>
       <%= f.label :event_date_gteq, '開催日で絞り込む：' %>
       <%= f.date_field :event_date_gteq %>
       ~
       <%= f.date_field :event_date_lteq_end_of_day %>
     <br>
-      <%= f.label :event_date_eq, '開催日選択：' %>
-      <%= f.date_field :event_date_eq %>
+      <%= f.label :event_date_eq, '開催日選択：', class: "mt-2" %>
+      <%= f.date_field :event_date_eq, class: "mt-2" %>
     <br>
-      <%= f.label :category_id_eq, 'カテゴリー:' %>
-      <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>
+      <%= f.label :category_id_eq, 'カテゴリー:', class: "mt-2" %>
+      <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
     <br>
-      <%= f.label :event_prefecture_id_eq, '開催県：' %>
-      <%= f.collection_select :event_prefecture_id_eq, EventPrefecture.all, :id, :name, include_blank: '指定なし'%>
+      <%= f.label :event_prefecture_id_eq, '開催県：', class: "mt-2" %>
+      <%= f.collection_select :event_prefecture_id_eq, EventPrefecture.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
     <br>
-      <%= f.label :cost, '価格：' %>
+      <%= f.label :cost, '価格：', class: "my-2" %>
       <%= f.radio_button :cost_lteq, '' %>
       指定なし
       <%= f.radio_button :cost_lteq, '0' %>
@@ -43,29 +45,36 @@
       4000円以内
       <%= f.radio_button :cost_lteq, '5000' %>
       5000円以内
+      <%= f.radio_button :cost_gteq, '5000' %>
+      5000円以上
     <br>
-    <%= link_to '全てを表示', events_path %>
+      <%= link_to '絞り込みをクリア', events_path, class: "text-decoration-none text-dark border border-dark p-1" %>
     <br>
-      <%= f.submit '検索' %>
+      <p class="mt-2"><%= f.submit '検索' %></p>
 <% end %>
+</div>
+
+<div class="border border-1 p-2">
+<h5 class="mt-2">並び替え▼</h5>
 
   <thead>
     <tr>
-      <th><%= sort_link(@p, :category_id, "カテゴリー") %></th>
-      <th><%= sort_link(@p, :event_prefecture_id, "開催県") %></th>
-      <th><%= sort_link(@p, :cost, "費用") %></th>
-      <th><%= sort_link(@p, :event_date, "開催日") %></th>
-      <th><%= sort_link(@p, :people_number_id, "参加人数") %></th>
-      <th><%= sort_link(@p, :user_id, "主催者別") %></th>
-      <th><%= sort_link(@p, :created_at, "投稿順") %></th>
+      <th><span class="mx-1"><%= sort_link(@p, :category_id, "カテゴリー順" ) %></span></th>
+      <th><span class="mx-1"><%= sort_link(@p, :event_prefecture_id, "都道府県順") %></span></th>
+      <th><span class="mx-1"><%= sort_link(@p, :cost, "費用順") %></span></th>
+      <th><span class="mx-1"><%= sort_link(@p, :event_date, "開催日順") %></span></th>
+      <th><span class="mx-1"><%= sort_link(@p, :people_number_id, "参加人数順") %></span></th>
+      <th><span class="mx-1"><%= sort_link(@p, :created_at, "投稿順") %></span></th>
+      <th><span class="mx-1"><%= sort_link(@p, :user_id, "主催者別") %></span></th>
+      <th><span class="mx-1"><%= link_to '元に戻す', events_path, class: "text-decoration-none text-dark border border-dark p-1" %></span></th>
     </tr>
   </thead>
-
+</div>
 <% if @results.length !=0 %>
       <% @results.each do |result| %>
         <div class="card mt-5 border mx-auto" style="width: 20rem;">
           <div class="article-text">
-            <%= link_to event_path(result) do %>
+            <%= link_to event_path(result),class: "text-decoration-none text-dark border-top mt-3" do %>
               <%= attachment_image_tag result, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
           </div>
           <div class="card-body">
@@ -85,7 +94,7 @@
               参加可能人数：<%= result.people_number.name %>
             </div>
             <div class="article-title">
-              参加費用：<%= result.cost %>
+              参加費用：<%= result.cost %>円
             </div>
             <div class="article-text">
               イベント日時：<%= result.event_date %>

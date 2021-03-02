@@ -1,32 +1,33 @@
-<div class="user-in">
+<div class="chat-header text-center py-3">
 <% @invites.each do |e| %>
   <% if current_user.id != e.user_id %>
-    <h3><strong><a href="/users/<%= e.user.id %>"><%= e.user.nickname %>さん</a></strong></h3>
+    <h3><strong><a href="/users/<%= e.user.id %>", class="chat-user-name text-decoration-none"><%= e.user.nickname %>さん</a></strong></h3>
   <% end %>
 <% end %>
-<p>とのチャットページ</p>
+<p class="text-light">とのチャットページ</p>
 </div>
 
-<div class="dmMain">
+<div class="chat-back pb-5">
+<div class="container border bg-light p-5">
     <% @messages.each do |m| %>
         <% if current_user.id != m.user_id %>
           <strong><%= m.body %></strong>
-          <small>(<%= m.user.nickname %>さん)</small><hr>
+          <small class="text-primary">(<%= m.user.nickname %>さん)</small><hr>
         <% else %>
-          <strong><%= m.body %></strong>
-          <small>(あなた)</small><hr>
+          <h6><b><%= m.body %></b><small class="text-muted">(あなた)</small></h6><hr>
         <% end %>
     <% end %>
 
     <%= form_for @message do |f| %>
-    <%= f.text_field :body, :placeholder => "メッセージを入力して下さい" , :size => 100 %>
+    <%= f.text_field :body, :placeholder => "メッセージを入力して下さい" , :size => 100, class: "form-control form-control-sm" %>
     <%= f.hidden_field :room_id, :value => @room.id %>
     <br>
-    <%= f.submit "送信する" %>
+    <p><%= f.submit "送信する" %></p>
     <% end %>
+    <%= link_to "ユーザー一覧に戻る", users_path %>
+</div>
 </div>
 
-<%= link_to "ユーザー一覧に戻る", users_path %>
 
 
 <style>
