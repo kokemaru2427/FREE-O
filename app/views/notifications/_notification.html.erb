@@ -2,7 +2,7 @@
 <% visited = notification.visited %>
 <div>
  <%= link_to user_path(visitor) do %>
-     <%= visitor.name %>さんが
+     <%= visitor.nickname %>さんが
  <% end %>
  <% if notification.action=='dm' %>
     あなたにDMを送りました
