@@ -10,7 +10,7 @@
         があなたにDMを送りました。<br>
         <small class="text-muted"><%= Message.find_by(id: notification.message_id)&.body %></small></p>
         <% end %>
-        <%= link_to '既読にする',notification_path(notification.id, visitor_id: visitor.id),method: :put %>
+        <%= link_to 'メッセージを確認する',notification_path(notification.id, visitor_id: visitor.id),method: :put %>
         
     </div>
 <% end %>

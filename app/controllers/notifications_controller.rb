@@ -5,7 +5,6 @@ class NotificationsController < ApplicationController
 
   def update
     notifications=Notification.where(visitor_id: params[:visitor_id])
-
     if notifications.update_all(checked: true)
       hobby = Invite.where(user_id: params[:visitor_id]).map(&:room_id)
       current = Invite.where(user_id: current_user).map(&:room_id)
