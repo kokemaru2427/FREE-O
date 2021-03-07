@@ -2,12 +2,13 @@
 <% visited = notification.visited %>
 
 <% if notification.checked == false %>
-    <div class="border">
+    <div class="border p-3">
         <%= link_to user_path(visitor) do %>
-            <%= visitor.nickname %>さん
+            <p><%= visitor.nickname %>さん
         <% end %>
         <% if notification.action=='dm' %>
-        があなた<small class="text-muted">(<%= visited.nickname %>さん)</small>にDMを送りました。
+        があなたにDMを送りました。<br>
+        <small class="text-muted"><%= Message.find_by(id: notification.message_id)&.body %></small></p>
         <% end %>
         <%= link_to '既読にする',notification_path(notification.id),method: :put %>
     </div>

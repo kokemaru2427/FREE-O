@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = current_user.passive_notifications
+    @notifications = current_user.passive_notifications.where(checked: false)
   end
 
   def update
