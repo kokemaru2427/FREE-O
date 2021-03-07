@@ -44,8 +44,12 @@
         <% if @user.id == current_user.id %>
           <div class="mt-3"><%= link_to '編集', edit_user_path(@user), class: "btn btn-primary order-2" %></div>
         <% end %>
+        <div class="mt-5">
         <%= render 'relationships/follow_button', user: @user %>
-        <span>フォロー数：<%= @user.relationships.count %></span>
+        </div>
+        <span class="me-3"><small class="text-muted">フォロー数：<%= @user.relationships.count %></small></span>
+        <span><small class="text-muted">フォロワー数：<%= @user.followers.count %></small></span>
+        
       </li>
     </ul>
   </div>
