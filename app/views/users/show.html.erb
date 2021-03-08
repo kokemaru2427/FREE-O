@@ -108,7 +108,7 @@
           <span class="card-text"><i class="fas fa-edit"></i></span>このイベントを編集する
           <% end %>
         </li>
-        <li class="list-group-item"><%= link_to event_path(event), method: :delete, date: [confirm: "削除しますか？"], class: "text-decoration-none text-dark" do %>
+        <li class="list-group-item"><%= link_to event_path(event), method: :delete, data: {confirm: "本当にこのイベントを削除しますか？"}, class: "text-decoration-none text-dark" do %>
             <span class="card-text"><i class="fas fa-trash-alt"></i></span>このイベントを削除する
           <% end %>
         </li>

@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.valid?
       @event.save
-      redirect_to action: :index
+      redirect_to event_path(@event), notice: 'イベント投稿に成功しました。'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to event_path(@event)
+      redirect_to event_path(@event), notice: 'イベントを更新しました。'
     else
       render :edit
     end
