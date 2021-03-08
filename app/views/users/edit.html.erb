@@ -29,6 +29,24 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "form-control"%>
   </div>
 
+      <div class="field mt-3">
+    <b><%= f.label :school_year, '学年', class: "my-2" %></b><br />
+    <i class="fas fa-graduation-cap"></i>
+    <%= f.select :school_year, {'1回生': '1回生', '2回生': '2回生', '3回生': '3回生', '4回生': '4回生', '院生': '院生'}, { include_blank: '学年を選択してください'}, { class: 'form-control' , required: true } %>
+    </div>
+
+    <div class="field mt-3">
+    <b><%= f.label :undergraduate, '学部', class: "my-2" %></b><br />
+    <i class="fas fa-graduation-cap"></i>
+    <%= f.select :undergraduate, {'法学部': '法学部', '経済学部': '経済学部', '経営学部': '経営学部', '理工学部': '理工学部', '建築学部': '建築学部', '薬学部': '薬学部', '文芸学部': '文芸学部', '総合社会学部': '総合社会学部', '国際学部': '国際学部', '農学部': '農学部', '医学学部': '医学学部', '生物理工学部': '生物理工学部', '工学部': '工学部', '産業理工学部': '産業理工学部', '短期大学部': '短期大学学部', '通信教育部': '通信教育部'}, { include_blank: '学部を選択してください'}, { class: 'form-control' , required: true } %>
+    </div>
+
+  <div class="field mt-3">
+    <b><%= f.label :student_nunber, "学籍番号" , class: "my-2" %></b><br />
+    <i class="fas fa-user"></i>
+    <%= f.number_field :student_nunber, autofocus: true, placeholder: "数字のみ入力", class: "form-control" %>
+  </div>
+
   <b><%= f.label :profile, "プロフィール" , class: "my-2"%></b><br />
   <%= f.text_area :profile, placeholder: "プロフィール", row: "10", class: "form-control" %>
 

@@ -20,6 +20,13 @@
     <b><%= f.label :title, "ジャンル" , class: "my-2" %></b><br/>
     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"category-select form-control"}) %>
   </div>  
+
+  <div class="field mt-3">
+    <b><%= f.label :title, "活動目的" , class: "my-2" %></b><br/>
+    <%= f.collection_select(:activities_category_id, ActivitiesCategory.all, :id, :name, {}, {class:"category-select form-control"}) %>
+  </div>  
+
+
   <div class="field mt-3">
     <b><%= f.label :title, "開催地域" , class: "my-2" %></b><br/>
     <%= f.collection_select(:event_prefecture_id, EventPrefecture.all, :id, :name, {}, {class:"category-select form-control"}) %>
@@ -29,6 +36,11 @@
     <b><%= f.label :event_address, "開催住所" , class: "my-2" %></b><br/>
     <%= f.text_field :event_address, class:"form-control", placeholder:"開催住所" %>
   </div>
+
+      <div class="field mt-3">
+    <b><%= f.label :event_facility, "開催施設名" , class: "my-2" %></b><br/>
+    <%= f.text_field :event_facility, class:"form-control", placeholder:"開催施設名" %>
+  </div>
   
   <div class="field mt-3">
     <b><%= f.label :title, "参加可能人数" , class: "my-2" %></b><br/>
@@ -36,7 +48,7 @@
   </div>
   <div class="field mt-3">
     <b><%= f.label :title, "参加費用" , class: "my-2" %></b><br/>
-    <%= f.text_field :cost, class: "form-control", placeholder: "※無料の場合は０と記入してください。" %>円
+    <%= f.number_field :cost, class: "form-control", placeholder: "※無料の場合は０と記入してください。" %>円
   </div>  
   <div class="field mt-3">
     <b><%= f.label :title, "開催日" , class: "my-2" %></b><br/>

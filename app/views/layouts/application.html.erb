@@ -35,7 +35,12 @@
           <%= link_to 'ユーザー一覧', users_path, method: :get, class: "nav-link ms-1 text-dark" %>
           <%= link_to 'マイページ', user_path(current_user), method: :get, class: "nav-link ms-1 text-dark" %>
           <%= link_to 'ログアウト', destroy_user_session_path , method: :delete , class: "text-end nav-link ms-1 text-dark"%>
-          <%= link_to '通知機能', notifications_path, method: :get, class: "nav-link ms-1 text-dark" %>
+          <li>
+            <%= link_to '通知機能', notifications_path, method: :get, class: "nav-link ms-1 text-dark" %>
+          </li>
+          <% if unchecked_notifications.any? %>
+            <i class="fa fa-circle" style="color: orange;"></i>
+          <% end %>
         <% else %>
           <%= link_to 'イベント一覧', events_path, class: "nav-link ms-1 text-dark" %>
           <%= link_to 'ユーザー一覧', users_path , method: :get, class: "nav-link ms-1 text-dark" %>

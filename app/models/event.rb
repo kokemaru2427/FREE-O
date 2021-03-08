@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
+  belongs_to :activities_category
   belongs_to :event_prefecture
   belongs_to :people_number
 
@@ -22,6 +23,7 @@ class Event < ApplicationRecord
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
+    validates :activities_category_id
     validates :event_prefecture_id
     validates :people_number_id
   end

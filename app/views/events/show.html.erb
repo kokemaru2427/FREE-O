@@ -101,8 +101,10 @@
           <%= entry.j_family_name %>
           <%= entry.j_last_name %>さん
         <% end %>
+          <span class="mx-1">学部：<%= entry.entry_undergraduate %></span>
           <span class="mx-1">性別：<%= entry.sex %></span>
-          <span class="mx-1">学年：<%= entry.entry_school_year %></span><br>
+          <span class="mx-1">学年：<%= entry.entry_school_year %></span>
+          <br>
           あなたへのコメント：<%= entry.entry_comment %>
       </div>
     <% end %>

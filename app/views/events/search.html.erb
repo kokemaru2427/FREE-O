@@ -23,6 +23,9 @@
       <%= f.label :category_id_eq, 'カテゴリー:', class: "mt-2" %>
       <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
     <br>
+      <%= f.label :activities_category_id_eq, '活動目的:', class: "mt-2" %>
+      <%= f.collection_select :activities_category_id_eq, ActivitiesCategory.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
+    <br>
       <%= f.label :event_prefecture_id_eq, '開催県：', class: "mt-2" %>
       <%= f.collection_select :event_prefecture_id_eq, EventPrefecture.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
     <br>
@@ -120,12 +123,12 @@
             <% end %>
           <p>
           <% if current_user.already_favorited?(result) %>
-            <%= link_to event_favorites_path(result), method: :delete do %>
-              <i class="fas fa-heart"></i>
+            <%= link_to event_favorites_path(result),class: "text-decoration-none text-dark mt-3", method: :delete do %>
+              <i class="fas fa-heart text-danger"></i>いいね！
             <% end %>
           <% else %>
-            <%= link_to event_favorites_path(result), method: :post do %>
-              <i class="far fa-heart"></i>
+            <%= link_to event_favorites_path(result),class: "text-decoration-none text-dark mt-3", method: :post do %>
+              <i class="far fa-heart text-danger"></i>いいね！
             <% end %>
           <% end %>
           <%= result.favorites.count %>
@@ -135,7 +138,7 @@
     </div>
   </div>
 <% else %>
-  該当する商品はありません
+  該当するイベントはありません
 <% end %>
 <br>
 <%= link_to 'トップページへ戻る', root_path %>

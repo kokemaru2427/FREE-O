@@ -8,7 +8,7 @@
   <div class="myprofile row border border-3 w-50 mx-auto p-2 mt-2">
     <ul class="d-flex list-unstyled">
       <li class="text-start"><%= attachment_image_tag @user, :profile_image, fallback: "no-user-image.jpg", class: "card-img-top img-thumbnail w-50"%>
-        <h3 class="text-start mt-3"><%= @user.nickname %></h3><%= @user.school_year %>
+        <h3 class="text-start mt-3"><%= @user.nickname %></h3><%= @user.undergraduate %><span class="ms-3"><%= @user.school_year %></span>
         <div class="user-in">
           <% if @user.id == current_user.id %>
             <%= @msg %>

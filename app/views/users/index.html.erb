@@ -14,7 +14,7 @@
           <% end %>
             <div class="card-body border-top border-2 mt-2 ">
               <p class="card-text h2 border-2 pb-2 border-bottom"><%= link_to user.nickname, user_path(user), class: "text-decoration-none" %></p>
-              <p><%= user.school_year %></p>
+              <p><%= user.undergraduate %><span class="ms-3"><%= user.school_year %></span></p>
               <p class="border p-1"><b>プロフィール：</b><br><%= user.profile %></p>
               <p>投稿数:<%= user.events.count %></p>
             </div>

@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 2021_03_05_125657) do
     t.string "j_family_name", null: false
     t.string "j_last_name", null: false
     t.text "entry_comment"
+    t.string "entry_undergraduate", null: false
     t.string "entry_school_year", null: false
+    t.integer "entry_student_nunber", null: false
     t.string "sex", null: false
     t.bigint "user_id"
     t.bigint "event_id"
@@ -40,7 +42,9 @@ ActiveRecord::Schema.define(version: 2021_03_05_125657) do
     t.string "title", null: false
     t.text "details", null: false
     t.integer "category_id", null: false
+    t.integer "activities_category_id", null: false
     t.integer "event_prefecture_id", null: false
+    t.integer "event_facility"
     t.integer "people_number_id", null: false
     t.integer "cost", null: false
     t.date "event_date", null: false
@@ -111,6 +115,8 @@ ActiveRecord::Schema.define(version: 2021_03_05_125657) do
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false
     t.string "school_year", null: false
+    t.string "undergraduate", null: false
+    t.integer "student_nunber", null: false
     t.text "profile"
     t.string "profile_image_id"
     t.string "reset_password_token"

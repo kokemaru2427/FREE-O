@@ -8,6 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :encrypted_password, null: false, default: ""
       t.string :nickname, null: false
       t.string :school_year, null: false 
+      t.string :undergraduate, null: false
+      t.integer :student_nunber, null: false
       t.text :profile
       t.string :profile_image_id
 
