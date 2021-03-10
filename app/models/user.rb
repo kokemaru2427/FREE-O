@@ -51,4 +51,16 @@ class User < ApplicationRecord
           end
           validates :profile, length: { maximum: 250 }
           validates :student_nunber, length: { is: 10 }, uniqueness: true
+
+          def self.guest
+            find_or_create_by!(email: 'guest@example.com') do |user|
+              user.password = 'Guests123'
+              user.password_confirmation = user.password
+              user.nickname = 'ゲストユーザー'
+              user.school_year = '1回生'
+              user.undergraduate = '経営学部'
+              user.student_nunber = "2134567809"
+              user.profile = 'ゲストユーザーです。'
+            end
+          end
 end
