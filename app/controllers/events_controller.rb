@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index]
   before_action :set_event, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index_event, only: [:edit]
   before_action :search_product, only: [:index, :search]
 
   def index
@@ -61,9 +61,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
+  def move_to_index_event
+    if @event.user_id != current_user.id 
+      redirect_to root_path, alert: '不正なアクセスです。'
     end
   end
 
