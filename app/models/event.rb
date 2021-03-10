@@ -19,7 +19,7 @@ class Event < ApplicationRecord
     validates :event_date
     validates :start_time
     validates :end_time
-    end
+  end
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -27,4 +27,7 @@ class Event < ApplicationRecord
     validates :event_prefecture_id
     validates :people_number_id
   end
+  validates :title , length: { maximum: 30 }
+  validates :details, length: { maximum: 250 }
+  validates :cost, numericality: { only_integer: true, greater_than: -1, less_than: 1000000 }
 end

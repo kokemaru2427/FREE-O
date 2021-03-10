@@ -41,7 +41,7 @@
   <div class="field mt-2">
     <b><%= f.label :password, "パスワード", class: "my-2" %></b>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
+    <em>(半角6~12文字 英大文字・小文字・数字それぞれ１文字以上含む必要があります。)</em>
     <% end %><br />
     <i class="fas fa-unlock-alt"></i>
     <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class: "form-control" %>

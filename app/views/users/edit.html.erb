@@ -48,7 +48,7 @@
   </div>
 
   <b><%= f.label :profile, "プロフィール" , class: "my-2"%></b><br />
-  <%= f.text_area :profile, placeholder: "プロフィール", row: "10", class: "form-control" %>
+  <%= f.text_area :profile, placeholder: "プロフィール(250文字以内)", row: "10", class: "form-control" %>
 
   <b><%= f.label :profile_image, "プロフィール画像" , class: "my-2"%></b><br />
   <%= f.attachment_field :profile_image %>

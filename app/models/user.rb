@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+         VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,12}\z/
+         validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX, message: "は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります"}, on: :create
+
          attachment :profile_image
          has_many :events, dependent: :destroy
          has_many :entries, dependent: :destroy
@@ -40,4 +43,12 @@ class User < ApplicationRecord
             self.favorites.exists?(event_id: event.id)
           end
 
+          with_options presence: true do
+          validates :nickname
+          validates :school_year
+          validates :undergraduate
+          validates :student_nunber
+          end
+          validates :profile, length: { maximum: 250 }
+          validates :student_nunber, length: { is: 10 }, uniqueness: true
 end
