@@ -58,3 +58,4 @@ gem "refile-mini_magick"
 gem 'active_hash'
 gem 'pry-rails'
 gem 'ransack'
+gem "aws-sdk-s3", require: false
