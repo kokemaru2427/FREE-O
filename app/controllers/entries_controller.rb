@@ -15,7 +15,9 @@ class EntriesController < ApplicationController
     if entry.valid?
       entry.save
     else
+      @entry = Entry.new(entry_params)
       render :new
+      
     end
   end
 
