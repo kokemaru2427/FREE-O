@@ -52,8 +52,8 @@
     <%= f.time_field :end_time, class: "form-control" %>
   </div>
   <div class="field mt-3">
-    <b><%= f.label :event_image, "イメージ画像", class: "me-5"  %></b>
-    <%= f.attachment_field :event_image %>
+    <b><%= f.label :image, "イメージ画像", class: "me-5"  %></b>
+    <%= f.file_field :image, class: 'hidden' %>
   </div>
     <%= f.submit "更新する" ,class: "btn btn-primary col-4 offset-4 my-3" %>
 <% end %>

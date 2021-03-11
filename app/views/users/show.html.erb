@@ -7,7 +7,12 @@
 <div class="container">
   <div class="myprofile row border border-3 w-50 mx-auto p-2 mt-2">
     <ul class="d-flex list-unstyled">
-      <li class="text-start"><%= attachment_image_tag @user, :profile_image, fallback: "no-user-image.jpg", class: "card-img-top img-thumbnail w-50"%>
+      <li class="text-start">
+          <% if @user.user_image.attached? %>
+            <%= image_tag @user.user_image, class: "card-img-top img-thumbnail w-50" %>    
+          <% else %>
+            <%= image_tag("no-user-image.jpg", class: "card-img-top w-50") %>
+          <% end %>
         <h3 class="text-start mt-3"><%= @user.nickname %></h3><%= @user.undergraduate %><span class="ms-3"><%= @user.school_year %></span>
         <div class="user-in">
           <% if @user.id == current_user.id %>
@@ -61,7 +66,11 @@
   <div class="row">
     <% @entry_events.each do |e_event| %>
       <div class="card mt-5 border mx-auto" style="width: 20rem;">
-          <%= attachment_image_tag e_event, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
+          <% if e_event.image.attached? %>
+            <%= image_tag e_event.image, class: "card-img-top" %>
+          <% else %>
+            <%= image_tag("no-event-image.png", class: "card-img-top") %>
+          <% end %>
             <div class="card-body border-bottom">
               <h5 class="card-title"><%= e_event.title %></h5>
             </div>
@@ -93,7 +102,11 @@
     <% @events.each do |event| %>
     <% if event.user_id == @user.id %>
       <div class="card mt-5 border mx-auto" style="width: 20rem;">
-          <%= attachment_image_tag event, :event_image, class: "card-img-top" , fallback: "no-event-image.png" %>
+        <% if event.image.attached? %>
+          <%= image_tag event.image, class: "card-img-top" %>
+        <% else %>
+          <%= image_tag("no-event-image.png", class: "card-img-top") %>
+        <% end %>
             <div class="card-body border-bottom">
               <h5 class="card-title mt-3 border-top border-2 pt-3"><%= event.title %></h5>
               <p>エントリー者数：<%= event.entries.count %></p>

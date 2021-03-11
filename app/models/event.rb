@@ -4,8 +4,7 @@ class Event < ApplicationRecord
   belongs_to :activities_category
   belongs_to :event_prefecture
   belongs_to :people_number
-
-  attachment :event_image
+  has_one_attached :image
 
   belongs_to :user
   has_many :comments, dependent: :destroy

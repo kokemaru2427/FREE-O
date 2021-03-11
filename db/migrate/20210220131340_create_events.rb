@@ -12,7 +12,6 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.date :event_date, null: false
       t.time :start_time, null: false
       t.time :end_time, null: false
-      t.string :event_image_id
       t.references :user, foreign_key: true
       t.string :event_address
       t.timestamps

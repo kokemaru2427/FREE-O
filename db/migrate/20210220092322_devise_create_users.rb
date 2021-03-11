@@ -11,7 +11,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :undergraduate, null: false
       t.string :student_nunber, null: false
       t.text :profile
-      t.string :profile_image_id
 
       ## Recoverable
       t.string   :reset_password_token
