@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: FREE_O_production
-  username: FREE_O
-  password: <%= ENV['FREE_O_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
