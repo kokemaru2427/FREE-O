@@ -19,7 +19,7 @@
 
 # DEMO
 
-![近大 Events](https://gyazo.com/4cba43bdb61d0179c71cb483e14a48d1)
+![近大 Events](assets/kindai-3.png)
 
 # 概要
 
