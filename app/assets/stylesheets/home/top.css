@@ -11,8 +11,29 @@
   background-color: #1E90FF;
 }
 
+.btn2 {
+  background-color: white;
+  color: #1E90FF;
+}
+
+.btn3 {
+  background-color: #db802a;
+}
+
+.btn4 {
+  background-color: white;
+  color: #db802a;
+  border:#db802a;
+}
+
 .wellcome-coment {
   color: black;
   background-color: #d5ffff;
 }
 
+.top1 {
+  background-color: rgb(245, 250, 255);
+}
+.wellcome-message {
+  background-color: #f0d0b2;
+}
