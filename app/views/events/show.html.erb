@@ -1,3 +1,5 @@
+<div class="back-1">
+
 <div class="top-title-box row border border-bottom">
   <div class="container my-auto">
     <h4 class="top-title text-center font-italic"><b><em>イベント詳細ページ</em></b></h4>
@@ -5,8 +7,8 @@
 </div>
 
 <div class="container pb-5">
- <div class="event-card card mb-3 mt-5 border border-5" style="max-width: 1500px;">
-  <div class="row g-0">
+  <div class="event-card card mb-3 mt-5" style="max-width: 1500px;">
+  <div class="row g-0 event-show-1">
     <div class="col-md-4">
     <% if @event.image.attached? %>
       <%= image_tag @event.image, class: "card-img-top" %>
@@ -57,20 +59,19 @@
     <div class="d-flex justify-content-center">
       <%= link_to 'このイベントにエントリー', new_event_entry_path(@event.id), method: :get , class: "btn btn-info nav-link text-dark col-3" %>
     </div>
+    <div class="text-center mb-5">
+    <p>※（エントリーキャンセルについては主催者へチャットでご連絡ください。）</p>
+  </div>
   <% end %>
 
   <% if @event.entries.map(&:user_id).include? current_user.id  %>
     <h5 class="text-center"><span class="badge bg-danger">エントリー済み</span></h5>
-  <% end %>
-
-  <div class="text-center">
+    <div class="text-center mb-5">
     <p>※（エントリーキャンセルについては主催者へチャットでご連絡ください。）</p>
   </div>
+  <% end %>
 
-
-
-
-  <div class="border border-2 rounded mt-2 p-3">
+  <div class="rounded border border-3 border-dark mt-5 p-5 col-8 mx-auto bg-white">
     <div class="comments">
       <div class="border-bottom border-2 mb-3 p-2"><h4>＜コメント一覧＞</h4></div>
       <% if @comments.blank? %>
@@ -88,7 +89,7 @@
     <% if user_signed_in? %>
       <%= form_with(model: [@event, @comment], local: true) do |form| %>
         <%= form.text_area :text, placeholder: "コメントする", rows: "2", class: "form-control col-3" %>
-        <%= form.submit "送信", class: "mt-2 mb-5" %>
+        <%= form.submit "送信", class: "mt-2 mb-5 px-4" %>
       <% end %>
     <% else %>
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
@@ -96,7 +97,8 @@
   </div>
 
   <% if @event.user_id == current_user.id %>
-    <h4 class="mt-3">＜エントリー者一覧＞</h4>
+  <div class="text-center border-top border-3 mt-5 pt-3">
+    <h4>＜エントリー者一覧＞</h4>
     <p class="ms-3">現在のエントリー者数：<%= @event.entries.count %></p>
   <% @entrys.each do |entry| %>
     <% if entry.event_id == @event.id %>
@@ -113,7 +115,8 @@
       </div>
     <% end %>
   <% end %>
+  </div>
   <% end %>
 
-
+</div>
 </div>

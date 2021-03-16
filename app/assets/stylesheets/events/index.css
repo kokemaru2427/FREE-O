@@ -1,3 +1,16 @@
 .event-card {
   background-color: #EEEEEE;
 }
+
+.seach1 {
+  background-color: rgb(245, 250, 255);
+  border: 1px solid rgb(51, 113, 184);
+}
+
+.seach-box-1 {
+  background-color:rgb(49, 124, 221)
+}
+
+.search-text-1 {
+  border-bottom: 3px solid rgb(51, 113, 184);
+}

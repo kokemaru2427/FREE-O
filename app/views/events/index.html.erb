@@ -1,25 +1,22 @@
 <div class="top-title-box row border border-bottom">
   <div class="container my-auto">
-    <h4 class="top-title text-center font-italic"><b><em>イベント一覧ページ</em></b></h4>
+    <h4 class="top-title text-center font-italic"><b><em>イベント一覧</em></b></h4>
   </div>
 </div>
 
-<div class="events-bg">
-  <div class="container bg-light border pb-3">
+<div class="events-bg mt-5">
+  <div class="container pb-3">
     <div class="row">
-      <div class="border-top border-end border-1">
-        <h5 class="mt-2">検索▼</h5>
+      <div class="seach1 border-5 rounded  col-6 mx-auto">
+        <h5 class="search-text-1 mt-3 pb-2">イベント検索▼</h5>
         <%= search_form_for @p, url: search_events_path do |f| %>
-          <%= f.label :title_cont, 'キーワード検索:', class: "mt-2" %>
-          <%= f.search_field :title_cont , class: "w-25 border-dark form-control" %>
+          <%= f.label :title_cont, 'キーワード検索', class: "mt-2" %><i class="fas fa-search mx-1"></i>:
+          <%= f.search_field :title_cont , class: "w-50 border-dark form-control" %>
         <br>
           <%= f.label :event_date_gteq, '開催日で絞り込む：' %>
           <%= f.date_field :event_date_gteq %>
         ~
           <%= f.date_field :event_date_lteq_end_of_day %>
-        <br>
-          <%= f.label :event_date_eq, '開催日選択：', class: "mt-2" %>
-          <%= f.date_field :event_date_eq, class: "mt-2" %>
         <br>
           <%= f.label :category_id_eq, 'カテゴリー:', class: "mt-2" %>
           <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし', class: "mt-2" %>
@@ -33,33 +30,33 @@
           <%= f.label :cost, '価格：', class: "my-2" %>
           <%= f.radio_button :cost_lteq, '' %>
           指定なし
-          <%= f.radio_button :cost_lteq, '0' %>
+          <%= f.radio_button :cost_lteq, '0' ,class: "ms-2" %>
           無料
-          <%= f.radio_button :cost_lteq, '500' %>
+          <%= f.radio_button :cost_lteq, '500' ,class: "ms-2"  %>
           500円以内
-          <%= f.radio_button :cost_lteq, '1000' %>
+          <%= f.radio_button :cost_lteq, '1000',class: "ms-2"  %>
           1000円以内
-          <%= f.radio_button :cost_lteq, '1500' %>
+          <%= f.radio_button :cost_lteq, '1500',class: "ms-2"  %>
           1500円以内
-          <%= f.radio_button :cost_lteq, '2000' %>
+          <br>
+          <%= f.radio_button :cost_lteq, '2000',class: "ms-2"  %>
           2000円以内
-          <%= f.radio_button :cost_lteq, '3000' %>
+          <%= f.radio_button :cost_lteq, '3000',class: "ms-2"  %>
           3000円以内
-          <%= f.radio_button :cost_lteq, '4000' %>
+          <%= f.radio_button :cost_lteq, '4000',class: "ms-2"  %>
           4000円以内
-          <%= f.radio_button :cost_lteq, '5000' %>
+          <%= f.radio_button :cost_lteq, '5000',class: "ms-2"  %>
           5000円以内
-          <%= f.radio_button :cost_gteq, '5000' %>
+          <%= f.radio_button :cost_gteq, '5000',class: "ms-2"  %>
           5000円以上
         <br>
-          <%= link_to '絞り込みをクリア', events_path, class: "text-decoration-none text-dark border border-dark p-1" %>
-        <br>
-          <p class="mt-2"><%= f.submit '検索' %></p>
+          <p class="mt-2"><%= f.submit '検索' ,class: "px-2 py-1 mx-2"%><%= link_to '絞り込みをクリア', events_path, class: "text-decoration-none text-dark border rounded border-dark p-1" %></p>
         <% end %>
       </div>
 
-      <div class="border-top border-end border-1 p-2">
-      <h5 class="mt-2">並び替え▼</h5>
+      <div class="row">
+      <div class="p-2 mt-5 mx-auto col-7 border-top mb-2">
+      <h5 class="mt-5 text-center">並び替え▼</h5>
       <thead>
         <tr>
           <th><span class="mx-1"><%= sort_link(@p, :category_id, "カテゴリー順" ) %></span></th>
@@ -73,12 +70,12 @@
         </tr>
       </thead>
       </div>
+      </div>
+
 
       
-
-
       <% @events.each do |event| %>
-        <div class="card mt-5 border border-3 mx-auto" style="width: 20rem;">
+        <div class="card mt-2 border border-3 mx-auto" style="width: 20rem;">
           <div class="article-text">
           <%= link_to event_path(event),class: "text-decoration-none text-dark border-top mt-3" do %>
           <% if event.image.attached? %>
@@ -88,43 +85,27 @@
           <% end %>
           </div>
           <div class="card-body">
-            <div class="article-title">
-              タイトル：<%= event.title %>
-            </div>
-            <div class="article-text">
-              詳細：<%= event.details %>
-            </div>
+            <h3 class="article-title">
+              <%= event.title %>
+            </h3>
+            <div class="border rounded mt-3 p-3">
             <div class="article-genre">
               ジャンル：<%= event.category.name %>
             </div>
-            <div class="article-title">
+            <div class="article-title mt-1">
               開催エリア：<%= event.event_prefecture.name %>
             </div>
-            <div class="article-text">
-              参加可能人数：<%= event.people_number.name %>
-            </div>
-            <div class="article-title">
-              参加費用：<%= event.cost %>円
-            </div>
-            <div class="article-text">
+            <div class="article-text mt-1">
               イベント日時：<%= event.event_date %>
             </div>
-            <div class="article-text">
-              開催住所：<%= event.event_address %>
-            </div>
-            <div class="article-text">
-              開始時間：<%= event.start_time %>
-            </div>
-            <div class="article-text">
-              終了時間：<%= event.end_time %>
-            </div>
-            <div class="article-text">
-              主催者：<%= event.user.nickname %>
+            <div class="article-text mt-1">
+              主催者：<small><%= event.user.nickname %></small>
             </div>
             <div>  
-              <time class="mh-100">
-                <%= event.updated_at.strftime("%Y-%m-%d %H:%M") %>
-              </time>更新
+              <time class="mh-100 mt-1">
+                <small><%= event.updated_at.strftime("%Y-%m-%d %H:%M") %>
+              </time>更新</small>
+            </div>
             </div>
           </div>
           <% end %>
