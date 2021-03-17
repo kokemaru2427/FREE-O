@@ -17,9 +17,24 @@
 
 近畿大学生同士でのイベントやボランティア活動など新しいコミュニティを構築することのできるアプリです。
 
+# 開発環境
+
+- フロントエンド：HTML&CSS / JavaScript / Bootstrap
+- バックエンド：Ruby / Ruby on Rails
+- 単体テスト・結合テスト：RSpec
+- インフラ：AWS（EC2 / S3）
+- テキストエディタ：Visual Studio Code
+
+# URL
+
+[アプリ](http://13.114.223.16/)
+
+
+
+
 # DEMO
 
-<img width="1440" alt="スクリーンショット 2021-03-15 9 20 06" src="https://user-images.githubusercontent.com/73264611/111409920-27692100-871b-11eb-8adc-7bc9cf2f3982.png">
+<img width="1295" alt="スクリーンショット 2021-03-17 18 08 24" src="https://user-images.githubusercontent.com/73264611/111442503-c6a60c80-874b-11eb-8a85-76a6ab98c613.png">
 
 # 概要
 
@@ -28,13 +43,6 @@
 イベントを主催し、募集することで新たな学生同士の出会いやコミュニティを広げることができるアプリです。
 また、このアプリをしようすることで、新入生サークル歓迎活動を効率的でより良いものとします。
 
-# 本番環境
-
-- フロントエンド：HTML&CSS / JavaScript / Bootstrap
-- バックエンド：Ruby / Ruby on Rails
-- 単体テスト・結合テスト：RSpec
-- インフラ：AWS（EC2 / S3）
-- テキストエディタ：Visual Studio Code
 
 # 制作背景
 
