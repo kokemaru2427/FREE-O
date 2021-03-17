@@ -15,27 +15,69 @@
 
 近大 Events
 
-近畿大学生同士で、イベントやボランティア活動、新しいコミュニティーを構築するためのアプリです。
+近畿大学生同士でのイベントやボランティア活動など新しいコミュニティを構築することのできるアプリです。
 
 # DEMO
 
-![近大 Events](assets/kindai-3.png)
+![近大 Events](assets/images/kindai-3.png) 
 
 # 概要
 
-近畿大学生同士で、イベントやボランティア活動などを開催し、新しいコミュニティーを構築するためのアプリです。
+近畿大学の学生間で、イベントを主催できるアプリです。
+同じ趣味を持った学生、新たなプロジェクトを作り出したい学生が
+イベントを主催し、募集することで新たな学生同士の出会いやコミュニティを広げることができるアプリです。
+また、このアプリをしようすることで、新入生サークル歓迎活動を効率的でより良いものとします。
 
 # 本番環境
 
-"hoge"を動かすのに必要なライブラリなどを列挙する
-
-* huga 3.5.2
-* hogehuga 1.0.2
+フロントエンド：HTML&CSS / JavaScript / Bootstrap
+バックエンド：Ruby / Ruby on Rails
+単体テスト・結合テスト：RSpec
+インフラ：AWS（EC2 / S3）
+テキストエディタ：Visual Studio Code
 
 # 制作背景
 
-近畿大学はマンモス校である。大学は沢山の人と出会うことができる。私はそう考えていました。
-しかし、実際に入学してみるとサークルや、同じ学部の同じ学科の同じ授業を近くの席で受けている人としか
+①新しい出会いがない。＝ 新しい知識や経験ができない。
+
+私は近畿大学の学生です。
+近畿大学には３万人以上の学生がいます。
+しかし、その中で関わりのある人は、サークル活動の仲間や、同じ学部の同じ学科の同じ授業を受けている人に限定されています。そのため、学年が上がって行ったとしても新しい出会いはなく、一定の人達としか関わることができません。
+また、私はアカペラサークルに所属していますが、自分の趣味であるバスケットボールを誰かとやりたいと考えた場合に、サークル内ではバスケットボールが好きな人はほとんどおらず、実際に活動を行えませんでした。
+その他にも大学生の内にコミュニティーを運営したいと考えたり、プロジェクトを成功させる経験がしたいと考えましたが、同じ志の友達は限られておりプロジェクトを行えませんでした。
+
+②新入生サークル歓迎活動が大変。
+
+毎年4月に近大では自分のサークルに新入生を入れるため、サークルビラ配りが行われます。しかし、労力や時間、チラシのコストがかかります。
+反対に新入生側も、チラシをもらえなかったり、どのようなサークルがあるのかわからずほとんどのサークルの存在を知らずにサークルを選ぶしかありません。
+私の友達にも、いくつかのサークルはみたが自分に会うサークルが見つけられなかった。とサークルに参加せず、悔やんでいる人や、入ったがミスマッチが起こりすぐに辞めた人が多くいます。
+
+上記二点の問題を踏まえて私は、今回のKindai Eventsを制作することを決めました。
+
+
+目的のターゲット層
+
+近畿大学生
+
+どんなニーズ&課題に
+
+・大学は思ってたより人との関わりが少ない。
+・友達を増やしたい。
+・大学生の間にプロジェクトを作り上げる経験がしたい。
+・新規事業や自分の趣味活動を仲間としたいがリンクする人がいない。
+・サークルの新入生歓迎活動において
+①サークル員側
+チラシ配りに時間や労力が取られる。
+チラシ作りに費用がかかる。
+チラシ配りでは一部の学生にしか配ることができない（受け取ってもらえない）
+②新入生側
+興味があるサークルのチラシ配りに遭遇しないとチラシがもらえない。
+チラシを受け取りにくい（恥ずかしい、ゴミになる、友達の目が気になる）
+もっと多くのサークル活動を一度にみたい。
+自分が興味のある趣味や活動のサークルを一覧で見たい。
+多くのサークル体験がしたい。
+
+
 
 
 # 工夫したポイント
@@ -51,4 +93,70 @@ Ruby on Rails
 
 # DB設計
 
+# Kindai-EventsのER図
 
+## users テーブル
+
+| Column             | Type        | Options     |
+|:------------------:|:-----------:|:-----------:|
+| nickname           | string      | null: false |
+| email              | string      | null: false , unique:true|
+| encrypted_password | string      | null: false |
+| school_year        | string      | null: false |
+| undergraduate      | string      | null: false |
+| student_nunber     | string      | null: false |
+| profile            | text        | ----------- |
+
+### Association
+
+- has_many :items
+- has_many :purchases
+
+
+## items テーブル
+
+| Column              | Type        | Options           |
+|:-------------------:|:-----------:|:-----------------:|
+| name                | string      | null: false       |
+| explanation         | text        | null: false       |
+| category_id         | integer     | null: false       |
+| state_id            | integer     | null: false       |
+| shipping_charge_id  | integer     | null: false       |
+| prefecture_id       | integer     | null: false       |
+| shipping_date_id    | integer     | null: false       |
+| price               | integer     | null: false       |
+| user                | references  | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- has_one :purchase
+
+## purchases テーブル
+
+| Column         | Type       | Options           |
+|:--------------:|:----------:|:-----------------:|
+| user           | references | foreign_key: true |
+| item           | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :address
+
+## addresses テーブル
+
+| Column         | Type       | Options           |
+|:--------------:|:----------:|:-----------------:|
+| postal_code    | string     | null: false       |
+| prefecture_id  | integer    | null: false       |
+| municipalities | string     | null: false       |
+| residence      | string     | null: false       |
+| building       | string     | -----------       |
+| phone_number   | string     | null: false       |
+| purchase       | references | foreign_key: true |
+
+### Association
+
+- belongs_to :purchase
