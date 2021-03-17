@@ -19,7 +19,7 @@
 
 # DEMO
 
-![近大 Events](assets/images/kindai-3.png) 
+<img width="1440" alt="スクリーンショット 2021-03-15 9 20 06" src="https://user-images.githubusercontent.com/73264611/111409920-27692100-871b-11eb-8adc-7bc9cf2f3982.png">
 
 # 概要
 

@@ -50,8 +50,12 @@
         </li>
         <li class="nav-item">
           <%= link_to notifications_path, method: :get, class: "nav-link ms-3 text-dark me-2" do %>
-            <i class="far fa-bell fa-lg"></i>
+            <i class="far fa-bell fa-lg"></i>          
+            <% if unchecked_notifications.any? %>
+            <i class="fa fa-circle" style="color: orange;"></i>
           <% end %>
+          <% end %>
+
         </li>
         <li class="nav-item">
           <%= link_to user_path(current_user), method: :get, class: "nav-link ms-3 text-dark" do %>
@@ -60,10 +64,6 @@
         </li>
       </ul>
     </div>
-          
-          <% if unchecked_notifications.any? %>
-            <i class="fa fa-circle" style="color: orange;"></i>
-          <% end %>
         <% else %>
           <%= link_to 'イベント', events_path, class: "nav-link ms-1 text-dark" %>
           <%= link_to 'ユーザー一覧', users_path , method: :get, class: "nav-link ms-1 text-dark" %>
