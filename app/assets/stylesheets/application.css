@@ -15,7 +15,8 @@
  */
 
 .navbar-brand {
-  color: #DAA520;
+  color: #ffffff;
+  background-color: rgb(38, 84, 136);
 }
 
 .navbar-toggler {
