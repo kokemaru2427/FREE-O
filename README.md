@@ -17,6 +17,10 @@
 
 近畿大学生同士でのイベントやボランティア活動など新しいコミュニティを構築することのできるアプリです。
 
+# DEMO
+
+<img width="1295" alt="スクリーンショット 2021-03-17 18 08 24" src="https://user-images.githubusercontent.com/73264611/111442503-c6a60c80-874b-11eb-8a85-76a6ab98c613.png">
+
 # 開発環境
 
 - フロントエンド：HTML&CSS / JavaScript / Bootstrap
@@ -29,12 +33,6 @@
 
 [アプリ](http://13.114.223.16/)
 
-
-
-
-# DEMO
-
-<img width="1295" alt="スクリーンショット 2021-03-17 18 08 24" src="https://user-images.githubusercontent.com/73264611/111442503-c6a60c80-874b-11eb-8a85-76a6ab98c613.png">
 
 # 概要
 
