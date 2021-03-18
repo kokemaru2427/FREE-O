@@ -236,3 +236,25 @@
 ### Association
 
 - belongs_to :purchase
+
+# ローカルでの動作方法
+
+1. ターミナル上で、作業用のディレクトリに移動し、以下のコマンドを実行してください
+
+
+% git clone https://github.com/takuya-karatsu/cycle-app.git
+% cd cycle-app
+% bundle install
+% yarn install 
+% rails db:create
+% rails db:migrate
+
+
+2. config/environments/development.rbおよびconfig/environments/production.rbの記述を下記のように修正してください
+
+
+# 修正前
+# ~前略~
+config.active_storage.service = :amazon
+
+
