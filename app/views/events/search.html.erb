@@ -73,7 +73,7 @@
       </div>
 <% if @results.length !=0 %>
       <% @results.each do |result| %>
-        <div class="card mt-5 border mx-auto" style="width: 20rem;">
+        <div class="card mt-5 border border-3 mx-auto" style="width: 20rem;">
           <div class="article-text">
             <%= link_to event_path(result),class: "text-decoration-none text-dark border-top mt-3" do %>
           <% if result.image.attached? %>
@@ -86,7 +86,10 @@
             <h3 class="article-title">
               <%= result.title %>
             </h3>
-            <div class="border rounded mt-3 p-3">
+            <div class="border border-2 rounded mt-3 p-3">
+            <div class="article-title mt-1 border border-2 p-1 mb-2 rounded">
+              活動目的：<br><%= result.activities_category.name %>
+            </div>
             <div class="article-genre">
               ジャンル：<%= result.category.name %>
             </div>

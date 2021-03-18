@@ -22,10 +22,9 @@
   </div>  
 
   <div class="field mt-3">
-    <b><%= f.label :title, "活動目的" , class: "my-2" %></b><br/>
+    <b><%= f.label :activities_category_id, "活動目的" , class: "my-2" %></b><br/>
     <%= f.collection_select(:activities_category_id, ActivitiesCategory.all, :id, :name, {}, {class:"category-select form-control"}) %>
   </div>  
-
 
   <div class="field mt-3">
     <b><%= f.label :title, "開催地域" , class: "my-2" %></b><br/>
