@@ -171,72 +171,6 @@
 # Kindai-EventsのER図
 
 
-## users テーブル
-
-| Column             | Type        | Options     |
-|:------------------:|:-----------:|:-----------:|
-| nickname           | string      | null: false |
-| email              | string      | null: false , unique:true|
-| encrypted_password | string      | null: false |
-| school_year        | string      | null: false |
-| undergraduate      | string      | null: false |
-| student_nunber     | string      | null: false |
-| profile            | text        | ----------- |
-
-### Association
-
-- has_many :items
-- has_many :purchases
-
-
-## items テーブル
-
-| Column              | Type        | Options           |
-|:-------------------:|:-----------:|:-----------------:|
-| name                | string      | null: false       |
-| explanation         | text        | null: false       |
-| category_id         | integer     | null: false       |
-| state_id            | integer     | null: false       |
-| shipping_charge_id  | integer     | null: false       |
-| prefecture_id       | integer     | null: false       |
-| shipping_date_id    | integer     | null: false       |
-| price               | integer     | null: false       |
-| user                | references  | foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- has_one :purchase
-
-## purchases テーブル
-
-| Column         | Type       | Options           |
-|:--------------:|:----------:|:-----------------:|
-| user           | references | foreign_key: true |
-| item           | references | foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :item
-- has_one :address
-
-## addresses テーブル
-
-| Column         | Type       | Options           |
-|:--------------:|:----------:|:-----------------:|
-| postal_code    | string     | null: false       |
-| prefecture_id  | integer    | null: false       |
-| municipalities | string     | null: false       |
-| residence      | string     | null: false       |
-| building       | string     | -----------       |
-| phone_number   | string     | null: false       |
-| purchase       | references | foreign_key: true |
-
-### Association
-
-- belongs_to :purchase
-
 # ローカルでの動作方法
 
 1. ターミナル上で、作業用のディレクトリに移動し、以下のコマンドを実行してください
@@ -248,7 +182,6 @@
 % yarn install 
 % rails db:create
 % rails db:migrate
-
 ```
 2. config/environments/development.rbおよびconfig/environments/production.rbの記述を下記のように修正してください
 
@@ -256,7 +189,6 @@
 # 修正前
 # ~前略~
 config.active_storage.service = :amazon
-
 ```
 
 ```
@@ -268,5 +200,4 @@ config.active_storage.service = :local
 3. 下記コマンドを入力後、http://localhost:3000/ にアクセスしてください
 ```
 rails s
-
 ```
