@@ -242,22 +242,31 @@
 1. ターミナル上で、作業用のディレクトリに移動し、以下のコマンドを実行してください
 
 ```
-% git clone https://github.com/takuya-karatsu/cycle-app.git
-% cd cycle-app
+% git clone https://github.com/kokemaru2427/FREE-O.git
+% cd FREE-O
 % bundle install
 % yarn install 
 % rails db:create
 % rails db:migrate
 
 ```
-
-```
-
 2. config/environments/development.rbおよびconfig/environments/production.rbの記述を下記のように修正してください
 
-
+```
 # 修正前
 # ~前略~
 config.active_storage.service = :amazon
+
+```
+
+```
+# 修正後
+# ~前略~
+config.active_storage.service = :local
+```
+
+3. 下記コマンドを入力後、http://localhost:3000/ にアクセスしてください
+```
+rails s
 
 ```
