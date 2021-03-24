@@ -17,7 +17,6 @@ class EntriesController < ApplicationController
     else
       @entry = Entry.new(entry_params)
       render :new
-      
     end
   end
 

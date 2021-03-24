@@ -5,57 +5,57 @@
 </div>
 
 <div class="container">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field mt-3">
-    <b><%= f.label :nickname, "ニックネーム" , class: "my-2" %></b><br />
-    <i class="fas fa-user"></i>
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "nickname", class: "form-control" %>
-  </div>
-
-  <div class="field mt-2">
-    <b><%= f.label :email, "Eメールアドレス" , class: "my-2"%></b><br />
-    <i class="far fa-envelope"></i>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "form-control"%>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field mt-3">
-    <b><%= f.label :undergraduate, '学部', class: "my-2" %></b><br />
-    <i class="fas fa-graduation-cap"></i>
-    <%= f.select :undergraduate, {'法学部': '法学部', '経済学部': '経済学部', '経営学部': '経営学部', '理工学部': '理工学部', '建築学部': '建築学部', '薬学部': '薬学部', '文芸学部': '文芸学部', '総合社会学部': '総合社会学部', '国際学部': '国際学部', '農学部': '農学部', '医学学部': '医学学部', '生物理工学部': '生物理工学部', '工学部': '工学部', '産業理工学部': '産業理工学部', '短期大学部': '短期大学学部', '通信教育部': '通信教育部'}, { include_blank: '学部を選択してください'}, { class: 'form-control' , required: true } %>
+      <b><%= f.label :nickname, "ニックネーム" , class: "my-2" %></b><br />
+      <i class="fas fa-user"></i>
+      <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "nickname", class: "form-control" %>
+    </div>
+
+    <div class="field mt-2">
+      <b><%= f.label :email, "Eメールアドレス" , class: "my-2"%></b><br />
+      <i class="far fa-envelope"></i>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "form-control"%>
     </div>
 
     <div class="field mt-3">
-    <b><%= f.label :school_year, '学年', class: "my-2" %></b><br />
-    <i class="fas fa-graduation-cap"></i>
-    <%= f.select :school_year, {'1回生': '1回生', '2回生': '2回生', '3回生': '3回生', '4回生': '4回生', '院生': '院生'}, { include_blank: '学年を選択してください'}, { class: 'form-control' , required: true } %>
+      <b><%= f.label :undergraduate, '学部', class: "my-2" %></b><br />
+      <i class="fas fa-graduation-cap"></i>
+      <%= f.select :undergraduate, {'法学部': '法学部', '経済学部': '経済学部', '経営学部': '経営学部', '理工学部': '理工学部', '建築学部': '建築学部', '薬学部': '薬学部', '文芸学部': '文芸学部', '総合社会学部': '総合社会学部', '国際学部': '国際学部', '農学部': '農学部', '医学学部': '医学学部', '生物理工学部': '生物理工学部', '工学部': '工学部', '産業理工学部': '産業理工学部', '短期大学部': '短期大学学部', '通信教育部': '通信教育部'}, { include_blank: '学部を選択してください'}, { class: 'form-control' , required: true } %>
     </div>
 
-  <div class="field mt-3">
-    <b><%= f.label :student_nunber, "学籍番号" , class: "my-2" %></b><br />
-    <i class="fas fa-user"></i>
-    <%= f.number_field :student_nunber, autofocus: true, placeholder: "数字のみ入力", class: "form-control" %>
-  </div>
+    <div class="field mt-3">
+      <b><%= f.label :school_year, '学年', class: "my-2" %></b><br />
+      <i class="fas fa-graduation-cap"></i>
+      <%= f.select :school_year, {'1回生': '1回生', '2回生': '2回生', '3回生': '3回生', '4回生': '4回生', '院生': '院生'}, { include_blank: '学年を選択してください'}, { class: 'form-control' , required: true } %>
+    </div>
 
-  <div class="field mt-2">
-    <b><%= f.label :password, "パスワード", class: "my-2" %></b>
-    <% if @minimum_password_length %>
-    <em>(半角6~12文字 英大文字・小文字・数字それぞれ１文字以上含む必要があります。)</em>
-    <% end %><br />
-    <i class="fas fa-unlock-alt"></i>
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class: "form-control" %>
-  </div>
+    <div class="field mt-3">
+      <b><%= f.label :student_nunber, "学籍番号" , class: "my-2" %></b><br />
+      <i class="fas fa-user"></i>
+      <%= f.number_field :student_nunber, autofocus: true, placeholder: "数字のみ入力", class: "form-control" %>
+    </div>
 
-  <div class="field mt-2">
-    <b><%= f.label :password_confirmation ,"確認用パスワード", class: "my-2" %></b><br />
-    <i class="fas fa-unlock-alt"></i>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password", class: "form-control" %>
-  </div>
+    <div class="field mt-2">
+      <b><%= f.label :password, "パスワード", class: "my-2" %></b>
+      <% if @minimum_password_length %>
+        <em>(半角6~12文字 英大文字・小文字・数字それぞれ１文字以上含む必要があります。)</em>
+      <% end %><br />
+      <i class="fas fa-unlock-alt"></i>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class: "form-control" %>
+    </div>
 
-  <div class="actions mt-4">
-    <%= f.submit "新規登録" , class: "btn btn-primary col-4 offset-4" %>
-  </div>
+    <div class="field mt-2">
+      <b><%= f.label :password_confirmation ,"確認用パスワード", class: "my-2" %></b><br />
+      <i class="fas fa-unlock-alt"></i>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password", class: "form-control" %>
+    </div>
+
+    <div class="actions mt-4">
+      <%= f.submit "新規登録" , class: "btn btn-primary col-4 offset-4" %>
+    </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
